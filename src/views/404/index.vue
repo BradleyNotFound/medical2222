@@ -1,6 +1,6 @@
 <template>
   <div class="bg-container">
-    <el-button @click="backHome" class="back-home">离开这个是非之地</el-button>
+    <el-button @click="backHome" class="back-home">{{ $t('notFound.back') }}</el-button>
   </div>
 </template>
 
@@ -12,7 +12,7 @@ export default {
       setTimeout(() => {
         this.$router.replace("/");
       }, 200);
-      this.$message.success("你回到了正确的道路上");
+      this.$message.success(this.$t('notFound.success'));
     },
   },
 };

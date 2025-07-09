@@ -12,7 +12,7 @@
                             type="text"
                             v-model="loginForm.username"
                             autocomplete="off"
-                            placeholder="用户名"
+                            :placeholder="$t('login.username')"
                     />
                 </div>
               </el-form-item>
@@ -24,7 +24,7 @@
                             type="password"
                             v-model="loginForm.password"
                             autocomplete="off"
-                            placeholder="密码"
+                            :placeholder="$t('login.password')"
                             @keydown.enter="handleLogin('loginForm')"
                     />
                 </div>
@@ -158,12 +158,12 @@ export default {
               // }, 1200);
             })
             .catch(() => {
-              this.$message.error("账号或密码错误");
+              this.$message.error(this.$t('login.error'));
             });
         } else {
           this.$notify.error({
             title: " 错误",
-            message: " 请输入正确的用户名密码",
+            message: this.$t('login.empty'),
           });
 
           return false;

@@ -5,14 +5,14 @@
     </div>
     <div class="main-head">
       <div class="main-head-right">
-        <span
-          >欢迎来到慧医数字医疗应用系统，当前用户：<span id="username">{{
-            userName
-          }}</span></span
-        >
+        <span>{{ $t('header.welcome') }}<span id="username">{{ userName }}</span></span>
+        <el-select v-model="lang" size="mini" @change="changeLang" style="margin-left: 10px;">
+          <el-option label="中文" value="zh" />
+          <el-option label="English" value="en" />
+        </el-select>
         <div class="exit-area" @click="handleLogout">
           <p class="iconfont icon-tuichu"></p>
-          <p class="logout">退出登录</p>
+          <p class="logout">{{ $t('header.logout') }}</p>
         </div>
       </div>
     </div>
@@ -22,14 +22,23 @@
 <script>
 export default {
   name: "PageHeader",
+  data() {
+    return {
+      lang: localStorage.getItem('lang') || 'zh',
+    };
+  },
   methods: {
 
     handleLogout() {
       localStorage.removeItem("token");
       localStorage.removeItem("userInfo");
-      this.$message.warning("已退出登录");
+      this.$message.warning(this.$t('header.loggedOut'));
       this.$router.replace("/user/login");
       this.$router.go(0);
+    },
+    changeLang(val) {
+      this.$i18n.locale = val;
+      localStorage.setItem('lang', val);
     },
   },
   computed: {

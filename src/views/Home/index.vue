@@ -2,11 +2,11 @@
   <el-container>
     <!-- 头部区域 -->
     <el-header height="76px">
-      <h2>数据面板</h2>
+      <h2>{{ $t('home.dashboard') }}</h2>
       <!-- 面包屑导航区域 -->
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item>数据面板</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/' }">{{ $t('home.home') }}</el-breadcrumb-item>
+        <el-breadcrumb-item>{{ $t('home.dashboard') }}</el-breadcrumb-item>
       </el-breadcrumb>
     </el-header>
     <!-- 主体内容区域 -->
@@ -17,7 +17,7 @@
           <div class="square">
             <div icon-class="doc" class="icon" />
             <div class="title">
-              <div class="subtitle">医师人数</div>
+              <div class="subtitle">{{ $t('home.doctor') }}</div>
               <div class="number">{{ doctors }}</div>
             </div>
           </div>
@@ -25,7 +25,7 @@
           <div class="square">
             <div icon-class="bag" class="icon" />
             <div class="title">
-              <div class="subtitle">药物种类</div>
+              <div class="subtitle">{{ $t('home.drug') }}</div>
               <div class="number">{{ drugs }}</div>
             </div>
           </div>
@@ -33,7 +33,7 @@
           <div class="square">
             <div icon-class="operation" class="icon" />
             <div class="title">
-              <div class="subtitle">合作企业</div>
+              <div class="subtitle">{{ $t('home.company') }}</div>
               <div class="number">{{ companies }}</div>
             </div>
           </div>
@@ -41,7 +41,7 @@
           <div class="square">
             <div icon-class="patient" class="icon" />
             <div class="title">
-              <div class="subtitle">入驻药店</div>
+              <div class="subtitle">{{ $t('home.sale') }}</div>
               <div class="number">{{ sales }}</div>
             </div>
           </div>
@@ -58,15 +58,15 @@
         <!-- 销售城市量柱状图表 -->
         <div class="chartcontainer">
           <div class="rectangle">
-            <h1 style="color: gray">医院科室</h1>
+            <h1 style="color: gray">{{ $t('home.hospital') }}</h1>
             <div id="piechart" class="piechart"></div>
           </div>
 
           <div class="rectangle">
-            <h1 style="color: gray">最新政策</h1>
+            <h1 style="color: gray">{{ $t('home.latest') }}</h1>
             <div style="float: left; width: 100%">
               <el-table :data="materials" stripe style="width: 100%">
-                <el-table-column prop="notice" label="最新医保政策" width="450">
+                <el-table-column prop="notice" :label="$t('home.policy')" width="450">
                   <template slot-scope="scope">
                     <div>{{ scope.row.notice }}</div>
                   </template>
@@ -81,7 +81,7 @@
             </div>
             <div style="float: left; width: 100%">
               <el-table :data="policys" stripe style="width: 100%">
-                <el-table-column prop="notice" label="最新医药公司政策" width="450">
+                <el-table-column prop="notice" :label="$t('home.companyPolicy')" width="450">
                   <template slot-scope="scope">
                     <div>{{ scope.row.notice }}</div>
                   </template>
