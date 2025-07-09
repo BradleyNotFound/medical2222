@@ -13,7 +13,7 @@
     <!-- 主体内容区域 -->
     <el-main>
       <el-switch
-        active-text="销售地点地图展示"
+        :active-text="$t('saleManage.销售地点地图展示')"
         v-model="visualization"
         active-color="#13ce66"
         inactive-color="#bdc3c7"
@@ -34,7 +34,7 @@
           <el-col :span="23" class="search-col">
             <keep-alive>
               <el-input
-                placeholder="查询（输入要查询的药店名称）"
+                :placeholder="$t('saleManage.查询（输入要查询的药店名称）')"
                 size="small"
                 v-model="keyword"
                 @input="handelQuery"
@@ -50,11 +50,11 @@
           :data="tableData.list"
           highlight-current-row
         >
-          <el-table-column prop="saleId" label="药店编号" sortable />
-          <el-table-column prop="saleName" label="药店名称" />
-          <el-table-column prop="salePhone" label="药店电话" />
-          <el-table-column prop="address" label="药店地址" />
-          <el-table-column label="操作" v-if="hasRole">
+          <el-table-column prop="saleId" :label="$t('saleManage.药店编号')" sortable />
+          <el-table-column prop="saleName" :label="$t('saleManage.药店名称')" />
+          <el-table-column prop="salePhone" :label="$t('saleManage.药店电话')" />
+          <el-table-column prop="address" :label="$t('saleManage.药店地址')" />
+          <el-table-column :label="$t('saleManage.操作')" v-if="hasRole">
             <!-- 通过slot-scope拿到对应行的数据 -->
             <template slot-scope="scope">
               <button
@@ -93,7 +93,7 @@
           type="primary"
           style="margin-top: 20px; margin-left: 20px; margin-bottom: 40px"
           @click="handleAdd"
-          >新增地点</el-button
+          >{{ $t('saleManage.新增地点') }}</el-button
         >
         <div
           id="mapContainer"
@@ -103,7 +103,7 @@
     </el-main>
     <!-- 点击新增后的弹窗 -->
     <el-dialog
-      title="新增销售地点"
+      :title="$t('saleManage.新增销售地点')"
       :visible.sync="addFormVisible"
       :modal-append-to-body="false"
       @close="handleAddClose"
@@ -114,7 +114,7 @@
         ref="addForm"
         label-width="110px"
       >
-        <el-form-item label="药店名称" prop="saleName" :rules="rules.nameRules">
+        <el-form-item :label="$t('saleManage.药店名称')" prop="saleName" :rules="rules.nameRules">
           <el-input
             v-model.trim="addForm.saleName"
             autocomplete="off"
@@ -122,7 +122,7 @@
           ></el-input>
         </el-form-item>
         <el-form-item
-          label="药店电话"
+          :label="$t('saleManage.药店电话')"
           prop="salePhone"
           :rules="rules.phoneRules"
         >
@@ -134,15 +134,15 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="addFormVisible = false">取 消</el-button>
+        <el-button @click="addFormVisible = false">{{ $t('companyManage.取 消') }}</el-button>
         <el-button type="primary" @click="handleAddSalePlace('addForm')"
-          >确 定</el-button
+          >{{ $t('companyManage.确 定') }}</el-button
         >
       </div>
     </el-dialog>
     <!-- 点击修改后的弹窗 -->
     <el-dialog
-      title="修改销售地点信息"
+      :title="$t('saleManage.修改销售地点信息')"
       :visible="modifyFormVisible"
       :modal-append-to-body="false"
       @close="handleModifyClose"
@@ -153,14 +153,14 @@
         ref="modifyForm"
         label-width="110px"
       >
-        <el-form-item label="药店编号">
+        <el-form-item :label="$t('saleManage.药店编号')">
           <el-input
             v-model="modifyForm.saleId"
             autocomplete="off"
             disabled
           ></el-input>
         </el-form-item>
-        <el-form-item label="药店名称" prop="saleName" :rules="rules.nameRules">
+        <el-form-item :label="$t('saleManage.药店名称')" prop="saleName" :rules="rules.nameRules">
           <el-input
             v-model.trim="modifyForm.saleName"
             autocomplete="off"
@@ -168,7 +168,7 @@
           ></el-input>
         </el-form-item>
         <el-form-item
-          label="药店电话"
+          :label="$t('saleManage.药店电话')"
           prop="salePhone"
           :rules="rules.phoneRules"
         >
@@ -180,9 +180,9 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="modifyFormVisible = false">取 消</el-button>
+        <el-button @click="modifyFormVisible = false">{{ $t('companyManage.取 消') }}</el-button>
         <el-button type="primary" @click="handleModifySalePlace('modifyForm')"
-          >确 定</el-button
+          >{{ $t('companyManage.确 定') }}</el-button
         >
       </div>
     </el-dialog>
@@ -232,7 +232,7 @@ export default {
     handleAdd() {
       this.addStatus = 1;
       this.$message({
-        message: "请点击地图上的位置",
+        message: this.$t('saleManage.请点击地图上的位置'),
         type: "warning",
       });
     },
@@ -251,7 +251,7 @@ export default {
           that.dialogFormVisible = true;
           that.$message({
         showClose: true,
-        message: "位置选择成功，请输入详细信息",
+        message: that.$t('saleManage.位置选择成功，请输入详细信息'),
         type: "success",
       });
       that.addFormVisible = true;
@@ -350,7 +350,7 @@ export default {
           }, 2000);
         } else {
           this.$message({
-            message: "请检查输入的内容是否合规",
+            message: this.$t('companyManage.请检查输入的内容是否合规'),
             type: "warning",
           });
           return false;
@@ -359,9 +359,12 @@ export default {
     },
     // 删除销售地点
     handleDeleteSalePlace(saleId, saleName) {
-      this.$confirm(`确定要删除“${saleName}”的相关信息吗？`, "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
+      this.$confirm(
+        this.$t('saleManage.删除确认', { name: saleName }),
+        this.$t('companyManage.提示'),
+        {
+        confirmButtonText: this.$t('companyManage.确 定'),
+        cancelButtonText: this.$t('companyManage.取消'),
         type: "warning",
       })
         .then(() => {
@@ -375,7 +378,7 @@ export default {
         .catch(() => {
           this.$message({
             type: "info",
-            message: "已取消删除",
+            message: this.$t('saleManage.已取消删除'),
           });
         });
     },
@@ -399,7 +402,7 @@ export default {
           }, 2000);
         } else {
           this.$message({
-            message: "请检查输入的内容是否合规",
+            message: this.$t('companyManage.请检查输入的内容是否合规'),
             type: "warning",
           });
           return false;

@@ -45,7 +45,21 @@ export default {
     '请检查输入的内容是否合规': 'Please check whether the input is valid'
   },
   saleManage: {
-    list: 'Sales Location List'
+    list: 'Sales Location List',
+    '销售地点地图展示': 'Sales Location Map Display',
+    '查询（输入要查询的药店名称）': 'Search (enter pharmacy name)',
+    '药店编号': 'Pharmacy Number',
+    '药店名称': 'Pharmacy Name',
+    '药店电话': 'Pharmacy Phone Number',
+    '药店地址': 'Pharmacy Address',
+    '操作': 'Operation',
+    '新增地点': 'Add Location',
+    '新增销售地点': 'Add Sales Location',
+    '修改销售地点信息': 'Edit Sales Location Info',
+    '删除确认': 'Are you sure to delete "{name}"?',
+    '请点击地图上的位置': 'Please click on the map',
+    '位置选择成功，请输入详细信息': 'Location selected successfully, please enter details',
+    '已取消删除': 'Deletion cancelled'
   },
   cityManage: {
     list: 'City List'
