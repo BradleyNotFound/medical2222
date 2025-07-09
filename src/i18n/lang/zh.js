@@ -18,6 +18,7 @@ export default {
   menu: {
     '首页': '首页',
     '医药公司信息管理': '医药公司信息管理',
+    '医药公司管理': '医药公司管理',
     '销售地点管理': '销售地点管理',
     '城市信息管理': '城市信息管理',
     '药品信息管理': '药品信息管理',
@@ -48,6 +49,14 @@ export default {
   },
   cityManage: {
     list: '城市列表'
+  },
+  el: {
+    pagination: {
+      goto: '前往',
+      pagesize: '条/页',
+      total: '共 {total} 条',
+      pageClassifier: '页'
+    }
   },
   home: {
     dashboard: '数据面板',
