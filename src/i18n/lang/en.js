@@ -29,7 +29,9 @@ export default {
   companyManage: {
     list: 'Company List',
     '医药公司编号':'Company Number',
-    '查询公司名称':'Search Company Name'
+    '查询公司名称':'Search Company Name',
+    '公司名称':'Company Name',
+    '公司电话':'Company Phone Number'
   },
   saleManage: {
     list: 'Sales Location List'

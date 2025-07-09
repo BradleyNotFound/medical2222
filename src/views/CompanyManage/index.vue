@@ -44,10 +44,15 @@
       >
         <el-table-column :label="$t('companyManage.医药公司编号')" prop="companyId" sortable >
         </el-table-column>
-        <el-table-column prop="companyName" label="公司名称">
+        <el-table-column
+          prop="companyName"
+          :label="$t('companyManage.公司名称')">
         </el-table-column>
-        <el-table-column prop="companyPhone" label="公司电话">
+        <el-table-column
+          prop="companyPhone"
+         :label="$t('companyManage.公司电话')">
         </el-table-column>
+
         <el-table-column prop="companyOperation" label="操作" v-if="hasRole">
           <!-- 通过slot-scope拿到对应行的数据 -->
           <template slot-scope="scope">
