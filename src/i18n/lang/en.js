@@ -28,10 +28,20 @@ export default {
   },
   companyManage: {
     list: 'Company List',
-    '医药公司编号':'Company Number',
-    '查询公司名称':'Search Company Name',
-    '公司名称':'Company Name',
-    '公司电话':'Company Phone Number'
+    '医药公司编号': 'Company Number',
+    '查询公司名称': 'Search Company Name',
+    '公司名称': 'Company Name',
+    '公司电话': 'Company Phone Number',
+    '操作': 'Operation',
+    '新增医药公司': 'Add Company',
+    '修改医药公司信息': 'Edit Company Info',
+    '取 消': 'Cancel',
+    '确 定': 'Confirm',
+    '取消': 'Cancel',
+    '提示': 'Notice',
+    '删除确认': 'Are you sure to delete "{name}"? This will also remove the related company policy',
+    '已取消删除': 'Deletion cancelled',
+    '请检查输入的内容是否合规': 'Please check whether the input is valid'
   },
   saleManage: {
     list: 'Sales Location List'
