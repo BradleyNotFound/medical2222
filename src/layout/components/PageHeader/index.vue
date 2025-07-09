@@ -6,7 +6,12 @@
     <div class="main-head">
       <div class="main-head-right">
         <span>{{ $t('header.welcome') }}<span id="username">{{ userName }}</span></span>
-        <el-select v-model="lang" size="mini" @change="changeLang" style="margin-left: 10px;">
+        <el-select
+          v-model="lang"
+          size="mini"
+          @change="changeLang"
+          class="lang-select"
+        >
           <el-option label="中文" value="zh" />
           <el-option label="English" value="en" />
         </el-select>
@@ -109,6 +114,14 @@ export default {
       font-size: 20px;
       font-style: italic;
       font-weight: bold;
+    }
+    .lang-select {
+      margin-left: 10px;
+      .el-input__inner {
+        border-radius: 12px;
+        background-color: #f7f7f7;
+        border-color: #dcdfe6;
+      }
     }
   }
 }

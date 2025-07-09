@@ -15,6 +15,26 @@ export default {
     back: 'Leave this page',
     success: 'You are back on the right path',
   },
+  menu: {
+    '首页': 'Home',
+    '医药公司信息管理': 'Company Management',
+    '销售地点管理': 'Sales Location Management',
+    '城市信息管理': 'City Management',
+    '药品信息管理': 'Drug Management',
+    '医生信息管理': 'Doctor Management',
+    '必备材料管理': 'Material Management',
+    '医药公司政策管理': 'Company Policy',
+    '医保政策管理': 'Medical Policy'
+  },
+  companyManage: {
+    list: 'Company List'
+  },
+  saleManage: {
+    list: 'Sales Location List'
+  },
+  cityManage: {
+    list: 'City List'
+  },
   home: {
     dashboard: 'Dashboard',
     home: 'Home',
