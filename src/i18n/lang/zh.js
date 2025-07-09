@@ -1,0 +1,30 @@
+export default {
+  login: {
+    username: '用户名',
+    password: '密码',
+    login: '登录',
+    error: '账号或密码错误',
+    empty: '请输入正确的用户名密码',
+  },
+  header: {
+    welcome: '欢迎来到慧医数字医疗应用系统，当前用户：',
+    logout: '退出登录',
+    loggedOut: '已退出登录',
+  },
+  notFound: {
+    back: '离开这个是非之地',
+    success: '你回到了正确的道路上',
+  },
+  home: {
+    dashboard: '数据面板',
+    home: '首页',
+    doctor: '医师人数',
+    drug: '药物种类',
+    company: '合作企业',
+    sale: '入驻药店',
+    hospital: '医院科室',
+    latest: '最新政策',
+    policy: '最新医保政策',
+    companyPolicy: '最新医药公司政策'
+  }
+};

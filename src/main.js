@@ -6,6 +6,7 @@ import store from "./store";
 import _ from 'lodash'
 import "./style/reset.css";
 import "./plugins/element.js";
+import i18n from "./i18n";
 import Fragment from "vue-fragment";
 import "animate.css";
 
@@ -32,5 +33,6 @@ Vue.mixin({
 new Vue({
     router,
     store,
+    i18n,
     render: (h) => h(App),
 }).$mount("#app");
