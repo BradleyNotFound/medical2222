@@ -26,7 +26,7 @@
         <el-col :span="23" class="search-col">
           <keep-alive>
             <el-input
-              placeholder="查询（输入要查询的公司名称）"
+              :placeholder="$t('companyManage.查询公司名称')"
               size="small"
               v-model="keyword"
               @input="handelQuery"
@@ -42,7 +42,7 @@
         :data="tableData.list"
         highlight-current-row
       >
-        <el-table-column prop="companyId" label="医药公司编号" sortable>
+        <el-table-column :label="$t('companyManage.医药公司编号')" prop="companyId" sortable >
         </el-table-column>
         <el-table-column prop="companyName" label="公司名称">
         </el-table-column>

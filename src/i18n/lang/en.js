@@ -27,7 +27,9 @@ export default {
     '医保政策管理': 'Medical Policy'
   },
   companyManage: {
-    list: 'Company List'
+    list: 'Company List',
+    '医药公司编号':'Company Number',
+    '查询公司名称':'Search Company Name'
   },
   saleManage: {
     list: 'Sales Location List'
