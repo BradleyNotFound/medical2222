@@ -53,7 +53,7 @@
          :label="$t('companyManage.公司电话')">
         </el-table-column>
 
-        <el-table-column prop="companyOperation" label="操作" v-if="hasRole">
+        <el-table-column prop="companyOperation" :label="$t('companyManage.操作')" v-if="hasRole">
           <!-- 通过slot-scope拿到对应行的数据 -->
           <template slot-scope="scope">
             <button
@@ -89,7 +89,7 @@
     </el-main>
     <!-- 点击新增后的弹窗 -->
     <el-dialog
-      title="新增医药公司"
+      :title="$t('companyManage.新增医药公司')"
       :visible.sync="addFormVisible"
       :modal-append-to-body="false"
       @close="handleAddClose"
@@ -101,7 +101,7 @@
         label-width="110px"
       >
         <el-form-item
-          label="公司名称"
+          :label="$t('companyManage.公司名称')"
           prop="companyName"
           :rules="rules.nameRules"
         >
@@ -112,7 +112,7 @@
           ></el-input>
         </el-form-item>
         <el-form-item
-          label="公司电话"
+          :label="$t('companyManage.公司电话')"
           prop="companyPhone"
           :rules="rules.phoneRules"
         >
@@ -124,15 +124,15 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="addFormVisible = false">取 消</el-button>
+        <el-button @click="addFormVisible = false">{{ $t('companyManage.取 消') }}</el-button>
         <el-button type="primary" @click="handleAddCompany('addForm')"
-          >确 定</el-button
+          >{{ $t('companyManage.确 定') }}</el-button
         >
       </div>
     </el-dialog>
     <!-- 点击修改后的弹窗 -->
     <el-dialog
-      title="修改医药公司信息"
+      :title="$t('companyManage.修改医药公司信息')"
       :visible.sync="modifyFormVisible"
       :modal-append-to-body="false"
       @close="handleModifyClose"
@@ -143,7 +143,7 @@
         ref="modifyForm"
         label-width="110px"
       >
-        <el-form-item label="医药公司编号">
+        <el-form-item :label="$t('companyManage.医药公司编号')">
           <el-input
             v-model="modifyForm.companyId"
             autocomplete="off"
@@ -151,7 +151,7 @@
           ></el-input>
         </el-form-item>
         <el-form-item
-          label="公司名称"
+          :label="$t('companyManage.公司名称')"
           prop="companyName"
           :rules="rules.nameRules"
         >
@@ -162,7 +162,7 @@
           ></el-input>
         </el-form-item>
         <el-form-item
-          label="公司电话"
+          :label="$t('companyManage.公司电话')"
           prop="companyPhone"
           :rules="rules.phoneRules"
         >
@@ -174,9 +174,9 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="modifyFormVisible = false">取 消</el-button>
+        <el-button @click="modifyFormVisible = false">{{ $t('companyManage.取 消') }}</el-button>
         <el-button type="primary" @click="handleModifyCompany('modifyForm')"
-          >确 定</el-button
+          >{{ $t('companyManage.确 定') }}</el-button
         >
       </div>
     </el-dialog>
@@ -249,7 +249,7 @@ export default {
           });
         } else {
           this.$message({
-            message: "请检查输入的内容是否合规",
+            message: this.$t('companyManage.请检查输入的内容是否合规'),
             type: "warning",
           });
           return false;
@@ -258,9 +258,12 @@ export default {
     },
     // 删除公司
     handleDeleteCompany(companyId, companyName) {
-      this.$confirm(`确定要删除“${companyName}”的相关信息吗？该操作会同时删除对应的公司政策`, "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
+      this.$confirm(
+        this.$t('companyManage.删除确认', { name: companyName }),
+        this.$t('companyManage.提示'),
+        {
+        confirmButtonText: this.$t('companyManage.确 定'),
+        cancelButtonText: this.$t('companyManage.取消'),
         type: "warning",
       })
         .then(() => {
@@ -274,7 +277,7 @@ export default {
         .catch(() => {
           this.$message({
             type: "info",
-            message: "已取消删除",
+            message: this.$t('companyManage.已取消删除'),
           });
         });
     },
@@ -302,7 +305,7 @@ export default {
           });
         } else {
           this.$message({
-            message: "请检查输入的内容是否合规",
+            message: this.$t('companyManage.请检查输入的内容是否合规'),
             type: "warning",
           });
           return false;
