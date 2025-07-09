@@ -3,11 +3,11 @@
   <el-container>
     <!-- 头部区域 -->
     <el-header height="76px">
-      <h2>销售地点管理</h2>
+      <h2>{{ $t('menu.销售地点管理') }}</h2>
       <!-- 面包屑导航区域 -->
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item>销售地点管理</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/' }">{{ $t('menu.首页') }}</el-breadcrumb-item>
+        <el-breadcrumb-item>{{ $t('menu.销售地点管理') }}</el-breadcrumb-item>
       </el-breadcrumb>
     </el-header>
     <!-- 主体内容区域 -->
@@ -22,7 +22,7 @@
       <!--header -->
       <div v-show="!visualization">
         <div class="main-title">
-          <h3>销售地点列表</h3>
+          <h3>{{ $t('saleManage.list') }}</h3>
           <!-- <button
             class="new-add"
             @click="addFormVisible = true"
