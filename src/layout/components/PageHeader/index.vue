@@ -20,6 +20,9 @@
           <p class="logout">{{ $t('header.logout') }}</p>
         </div>
       </div>
+      <button class="theme-toggle" @click="toggleTheme">
+        {{ isDark ? '🌙' : '☀️' }}
+      </button>
     </div>
   </div>
 </template>
@@ -30,7 +33,11 @@ export default {
   data() {
     return {
       lang: localStorage.getItem('lang') || 'zh',
+      isDark: localStorage.getItem('theme') === 'dark'
     };
+  },
+  mounted() {
+    this.applyTheme();
   },
   methods: {
 
@@ -44,6 +51,18 @@ export default {
     changeLang(val) {
       this.$i18n.locale = val;
       localStorage.setItem('lang', val);
+    },
+    toggleTheme() {
+      this.isDark = !this.isDark;
+      localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
+      this.applyTheme();
+    },
+    applyTheme() {
+      if (this.isDark) {
+        document.body.classList.add('dark-mode');
+      } else {
+        document.body.classList.remove('dark-mode');
+      }
     },
   },
   computed: {
@@ -62,6 +81,7 @@ export default {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 .system-name {
   width: 200px;
@@ -124,5 +144,14 @@ export default {
       }
     }
   }
+.theme-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+}
 }
 </style>
