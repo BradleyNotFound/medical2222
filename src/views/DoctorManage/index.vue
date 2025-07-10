@@ -3,18 +3,18 @@
   <el-container>
     <!-- 头部区域 -->
     <el-header height="76px">
-      <h2>医生信息管理</h2>
+      <h2>{{ $t('menu.医生信息管理') }}</h2>
       <!-- 面包屑导航区域 -->
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item>医生信息管理</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/' }">{{ $t('menu.首页') }}</el-breadcrumb-item>
+        <el-breadcrumb-item>{{ $t('menu.医生信息管理') }}</el-breadcrumb-item>
       </el-breadcrumb>
     </el-header>
     <!-- 主体内容区域 -->
     <el-main>
       <!--header -->
       <div class="main-title">
-        <h3>医生信息列表</h3>
+        <h3>{{ $t('doctorManage.list') }}</h3>
         <button
           class="new-add"
           @click="addFormVisible = true"
@@ -25,7 +25,7 @@
       <el-row :gutter="20">
         <el-col :span="23" class="search-col">
           <el-input
-            placeholder="查询（输入要查询的关键字）"
+            :placeholder="$t('doctorManage.查询（输入要查询的关键字）')"
             clearable
             size="small"
             v-model="keyword"
@@ -42,17 +42,17 @@
         :default-sort="{ prop: 'date', order: 'descending' }"
         highlight-current-row
       >
-        <el-table-column prop="name" label="医生姓名" />
-        <el-table-column prop="age" label="年龄" sortable />
-        <el-table-column prop="sex" label="性别" sortable>
+        <el-table-column prop="name" :label="$t('doctorManage.医生姓名')" />
+        <el-table-column prop="age" :label="$t('doctorManage.年龄')" sortable />
+        <el-table-column prop="sex" :label="$t('doctorManage.性别')" sortable>
           <template slot-scope="scope">
-            <span>{{ scope.row.sex == 1 ? "男" : "女" }}</span>
+            <span>{{ scope.row.sex == 1 ? $t('doctorManage.男') : $t('doctorManage.女') }}</span>
           </template>
         </el-table-column>
-        <el-table-column prop="doctorLevel" label="级别" sortable />
-        <el-table-column prop="phoneNumber" label="手机号" />
-        <el-table-column prop="treatType" label="诊治类别" sortable />
-        <el-table-column label="操作" width="210px" v-if="hasRole">
+        <el-table-column prop="doctorLevel" :label="$t('doctorManage.级别')" sortable />
+        <el-table-column prop="phoneNumber" :label="$t('doctorManage.手机号')" />
+        <el-table-column prop="treatType" :label="$t('doctorManage.诊治类别')" sortable />
+        <el-table-column :label="$t('doctorManage.操作')" width="210px" v-if="hasRole">
           <template slot-scope="scope">
             <button
               class="table-btn-delete"
@@ -80,7 +80,7 @@
               style="width: 75px;"
               class="table-btn"
               @click="resetPassword(scope.row.accountId, scope.row.name)"
-              >重置密码</el-button
+              >{{ $t('doctorManage.重置密码') }}</el-button
             >
           </template>
         </el-table-column>
@@ -121,7 +121,7 @@
             required
           ></el-input>
         </el-form-item>
-        <el-form-item label="年龄" prop="age" :rules="doctorRules.ageRules">
+        <el-form-item :label="$t('doctorManage.年龄')" prop="age" :rules="doctorRules.ageRules">
           <el-input
             v-model.number="addForm.age"
             autocomplete="off"
@@ -129,21 +129,21 @@
           ></el-input>
         </el-form-item>
         <el-form-item
-          label="性别"
+          :label="$t('doctorManage.性别')"
           prop="sex"
           :rules="doctorRules.requiredRules"
         >
-          <el-select v-model="addForm.sex" placeholder="请选择性别">
-            <el-option label="男" :value="1" />
-            <el-option label="女" :value="2" />
+          <el-select v-model="addForm.sex" :placeholder="$t('doctorManage.请选择性别')">
+            <el-option :label="$t('doctorManage.男')" :value="1" />
+            <el-option :label="$t('doctorManage.女')" :value="2" />
           </el-select>
         </el-form-item>
         <el-form-item
-          label="级别"
+          :label="$t('doctorManage.级别')"
           prop="levelId"
           :rules="doctorRules.requiredRules"
         >
-          <el-select v-model="addForm.levelId" placeholder="请选择级别">
+          <el-select v-model="addForm.levelId" :placeholder="$t('doctorManage.请选择级别')">
             <el-option
               v-for="item in levelAndTypeData.allLevel"
               :key="item.id"
@@ -154,7 +154,7 @@
           </el-select>
         </el-form-item>
         <el-form-item
-          label="手机号"
+          :label="$t('doctorManage.手机号')"
           prop="phoneNumber"
           :rules="doctorRules.phoneRules"
         >
@@ -164,7 +164,7 @@
             required
           ></el-input>
         </el-form-item>
-        <el-form-item label="密码" prop="pwd" :rules="pwdRules">
+        <el-form-item :label="$t('doctorManage.密码')" prop="pwd" :rules="pwdRules">
           <el-input
             type="password"
             v-model.trim="addForm.pwd"
@@ -172,7 +172,7 @@
             required
           ></el-input>
         </el-form-item>
-        <el-form-item label="确认密码" prop="pwdCheck" :rules="checkPwdRules">
+        <el-form-item :label="$t('doctorManage.确认密码')" prop="pwdCheck" :rules="checkPwdRules">
           <el-input
             type="password"
             v-model.trim="addForm.pwdCheck"
@@ -181,11 +181,11 @@
           ></el-input>
         </el-form-item>
         <el-form-item
-          label="诊治类别"
+          :label="$t('doctorManage.诊治类别')"
           prop="typeId"
           :rules="doctorRules.requiredRules"
         >
-          <el-select v-model="addForm.typeId" placeholder="请选择诊治类别">
+          <el-select v-model="addForm.typeId" :placeholder="$t('doctorManage.请选择诊治类别')">
             <el-option
               v-for="item in levelAndTypeData.allTreatType"
               :key="item.id"
@@ -197,15 +197,15 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="addFormVisible = false">取 消</el-button>
+        <el-button @click="addFormVisible = false">{{ $t('doctorManage.取 消') }}</el-button>
         <el-button type="primary" @click="handleAddDoctor('addForm')"
-          >确 定</el-button
+          >{{ $t('doctorManage.确 定') }}</el-button
         >
       </div>
     </el-dialog>
     <!-- 点击修改后的弹窗 -->
     <el-dialog
-      title="修改医生信息"
+      :title="$t('doctorManage.修改医生信息')"
       :visible.sync="modifyFormVisible"
       :modal-append-to-body="false"
       @close="handleModifyClose"
@@ -217,26 +217,26 @@
         label-width="110px"
       >
         <el-form-item
-          label="医生姓名"
+          :label="$t('doctorManage.医生姓名')"
           prop="name"
           :rules="doctorRules.nameRules"
         >
           <el-input v-model.trim="modifyForm.name" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="年龄" prop="age" :rules="doctorRules.ageRules">
+        <el-form-item :label="$t('doctorManage.年龄')" prop="age" :rules="doctorRules.ageRules">
           <el-input
             v-model.number="modifyForm.age"
             autocomplete="off"
           ></el-input>
         </el-form-item>
-        <el-form-item label="性别" :rules="doctorRules.requiredRules">
-          <el-select v-model="modifyForm.sex" placeholder="请选择性别">
-            <el-option label="男" :value="1" />
-            <el-option label="女" :value="2" />
+        <el-form-item :label="$t('doctorManage.性别')" :rules="doctorRules.requiredRules">
+          <el-select v-model="modifyForm.sex" :placeholder="$t('doctorManage.请选择性别')">
+            <el-option :label="$t('doctorManage.男')" :value="1" />
+            <el-option :label="$t('doctorManage.女')" :value="2" />
           </el-select>
         </el-form-item>
-        <el-form-item label="级别" :rules="doctorRules.requiredRules">
-          <el-select v-model="modifyForm.levelId" placeholder="请选择级别">
+        <el-form-item :label="$t('doctorManage.级别')" :rules="doctorRules.requiredRules">
+          <el-select v-model="modifyForm.levelId" :placeholder="$t('doctorManage.请选择级别')">
             <el-option
               v-for="item in levelAndTypeData.allLevel"
               :key="item.id"
@@ -247,7 +247,7 @@
           </el-select>
         </el-form-item>
         <el-form-item
-          label="手机号"
+          :label="$t('doctorManage.手机号')"
           prop="phoneNumber"
           :rules="doctorRules.phoneRules"
         >
@@ -257,8 +257,8 @@
             required
           ></el-input>
         </el-form-item>
-        <el-form-item label="诊治类别" :rules="doctorRules.requiredRules">
-          <el-select v-model="modifyForm.typeId" placeholder="请选择诊治类别">
+        <el-form-item :label="$t('doctorManage.诊治类别')" :rules="doctorRules.requiredRules">
+          <el-select v-model="modifyForm.typeId" :placeholder="$t('doctorManage.请选择诊治类别')">
             <el-option
               v-for="item in levelAndTypeData.allTreatType"
               :key="item.id"
@@ -270,9 +270,9 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="modifyFormVisible = false">取 消</el-button>
+        <el-button @click="modifyFormVisible = false">{{ $t('doctorManage.取 消') }}</el-button>
         <el-button type="primary" @click="handleModifyDoctor('modifyForm')"
-          >确 定</el-button
+          >{{ $t('doctorManage.确 定') }}</el-button
         >
       </div>
     </el-dialog>
@@ -293,11 +293,11 @@ export default {
   data() {
     let validatorPass = (rule, value, callback) => {
       if (value === "") {
-        callback(new Error("请输入密码"));
+        callback(new Error(this.$t('doctorManage.请输入密码')));
       } else if (!validatePass(value)) {
         callback(
           new Error(
-            "密码应以字母开头 长度在5~18之间 只能包含字母、数字和下划线"
+            this.$t('doctorManage.密码应以字母开头 长度在5~18之间 只能包含字母、数字和下划线')
           )
         );
       } else {
@@ -309,9 +309,9 @@ export default {
     };
     let validatorPass2 = (rule, value, callback) => {
       if (value === "") {
-        callback(new Error("请再次输入密码"));
+        callback(new Error(this.$t('doctorManage.请再次输入密码')));
       } else if (value !== this.addForm.pwd) {
-        callback(new Error("两次输入密码不一致!"));
+        callback(new Error(this.$t('doctorManage.两次输入密码不一致!')));
       } else {
         callback();
       }
@@ -397,7 +397,7 @@ export default {
             });
         } else {
           this.$message({
-            message: "请检查输入的内容是否合规",
+            message: this.$t('doctorManage.请检查输入的内容是否合规'),
             type: "warning",
           });
           return false;
@@ -406,9 +406,9 @@ export default {
     },
     // 删除
     handleDeleteDoctor(id, name) {
-      this.$confirm(`确定要删除“${name}”的相关信息吗？`, "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
+      this.$confirm(this.$t('doctorManage.删除确认', { name }), this.$t('doctorManage.提示'), {
+        confirmButtonText: this.$t('doctorManage.确 定'),
+        cancelButtonText: this.$t('doctorManage.取消'),
         type: "warning",
       })
         .then(() => {
@@ -422,7 +422,7 @@ export default {
         .catch(() => {
           this.$message({
             type: "info",
-            message: "已取消删除",
+            message: this.$t('doctorManage.已取消删除'),
           });
         });
     },
@@ -466,7 +466,7 @@ export default {
             });
         } else {
           this.$message({
-            message: "请检查输入的内容是否合规",
+            message: this.$t('doctorManage.请检查输入的内容是否合规'),
             type: "warning",
           });
           return false;
@@ -475,9 +475,9 @@ export default {
     },
     // 重置医生密码
     resetPassword(id, name) {
-      this.$confirm(`确定要重置“${name}”的密码吗？`, "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
+      this.$confirm(this.$t('doctorManage.重置确认', { name }), this.$t('doctorManage.提示'), {
+        confirmButtonText: this.$t('doctorManage.确 定'),
+        cancelButtonText: this.$t('doctorManage.取消'),
         type: "warning",
       })
         .then(() => {
@@ -486,7 +486,7 @@ export default {
         .catch(() => {
           this.$message({
             type: "info",
-            message: "已取消重置",
+            message: this.$t('doctorManage.已取消重置'),
           });
         });
     },
