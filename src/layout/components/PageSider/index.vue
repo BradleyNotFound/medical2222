@@ -2,7 +2,6 @@
   <div>
     <el-menu
       class="el-menu-vertical-demo"
-      background-color="#c6e2f1"
       text-color="#000000"
       active-text-color="#ffffff"
       router
@@ -99,10 +98,12 @@ export default {
 .el-menu {
   height: 100%;
   border-right: 0;
+  background: linear-gradient(180deg, #c6e2f1 0%, #e6f6fb 100%);
   }
 .MenuBackground{
-  background: url("../../../assets/MenuBackGround.jpg");
-  background-size: 120%;
+  background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url("../../../assets/MenuBackGround.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
   height: 844px;
   }
 </style>
