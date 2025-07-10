@@ -10,6 +10,11 @@ import i18n from "./i18n";
 import Fragment from "vue-fragment";
 import "animate.css";
 
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+  document.body.classList.add('dark-mode');
+}
+
 Vue.config.productionTip = false;
 Vue.use(Fragment.Plugin); //解决导航栏折叠时文字不折叠的问题
 Vue.prototype._ = _;
