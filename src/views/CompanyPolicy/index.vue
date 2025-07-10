@@ -3,20 +3,20 @@
   <el-container>
     <!-- 头部区域 -->
     <el-header height="76px">
-      <h2 v-if="hasRole">医药公司政策管理</h2>
-      <h2 v-else>医药公司政策查询</h2>
+      <h2 v-if="hasRole">{{ $t('menu.医药公司政策管理') }}</h2>
+      <h2 v-else>{{ $t('companyPolicyManage.医药公司政策查询') }}</h2>
       <!-- 面包屑导航区域 -->
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item v-if="hasRole">医药公司政策管理</el-breadcrumb-item>
-        <el-breadcrumb-item v-else>医药公司政策查询</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/' }">{{ $t('menu.首页') }}</el-breadcrumb-item>
+        <el-breadcrumb-item v-if="hasRole">{{ $t('menu.医药公司政策管理') }}</el-breadcrumb-item>
+        <el-breadcrumb-item v-else>{{ $t('companyPolicyManage.医药公司政策查询') }}</el-breadcrumb-item>
       </el-breadcrumb>
     </el-header>
     <!-- 主体内容区域 -->
     <el-main>
       <!--header -->
       <div class="main-title">
-        <h3>医药公司政策列表</h3>
+        <h3>{{ $t('companyPolicyManage.list') }}</h3>
         <button
 
           class="new-add"
@@ -29,7 +29,7 @@
       <el-row :gutter="20">
         <el-col :span="23" class="search-col">
           <el-input
-            placeholder="查询（输入要查询的关键字）"
+            :placeholder="$t('companyPolicyManage.查询（输入要查询的关键字）')"
             clearable
             size="small"
             v-model="keyword"
@@ -50,17 +50,17 @@
         <el-table-column type="expand">
           <template slot-scope="scope">
             <el-form label-position="left" inline class="demo-table-expand">
-              <el-form-item label="医药公司政策内容">
+              <el-form-item :label="$t('companyPolicyManage.医药公司政策内容')">
                 <span>{{ scope.row.message }}</span>
               </el-form-item>
             </el-form>
           </template>
         </el-table-column>
-        <el-table-column prop="drugCompanyModel.companyName" label="公司名称" />
-        <el-table-column prop="id" label="政策编号" sortable />
-        <el-table-column prop="title" label="政策名称" />
-        <el-table-column prop="updateTime" label="发布时间" sortable />
-        <el-table-column label="操作" v-if="hasRole">
+        <el-table-column prop="drugCompanyModel.companyName" :label="$t('companyManage.公司名称')" />
+        <el-table-column prop="id" :label="$t('companyPolicyManage.政策编号')" sortable />
+        <el-table-column prop="title" :label="$t('companyPolicyManage.政策名称')" />
+        <el-table-column prop="updateTime" :label="$t('companyPolicyManage.发布时间')" sortable />
+        <el-table-column :label="$t('companyManage.操作')" v-if="hasRole">
           <template slot-scope="scope">
             <button
 
@@ -95,7 +95,7 @@
     </el-main>
     <!-- 点击新增后的弹窗 -->
     <el-dialog
-      title="新增医药公司政策"
+      :title="$t('companyPolicyManage.新增医药公司政策')"
       :visible.sync="addFormVisible"
       :modal-append-to-body="false"
       @close="handleAddClose"
@@ -106,14 +106,14 @@
         ref="addForm"
         label-width="110px"
       >
-        <el-form-item label="政策名称" prop="title" :rules="rules.nameRules">
+        <el-form-item :label="$t('companyPolicyManage.政策名称')" prop="title" :rules="rules.nameRules">
           <el-input
             v-model.trim="addForm.title"
             autocomplete="off"
             required
           ></el-input>
         </el-form-item>
-        <el-form-item label="政策内容" prop="message" :rules="rules.infoRules">
+        <el-form-item :label="$t('companyPolicyManage.政策内容')" prop="message" :rules="rules.infoRules">
           <el-input
             v-model.trim="addForm.message"
             autocomplete="off"
@@ -123,11 +123,11 @@
           ></el-input>
         </el-form-item>
         <el-form-item
-          label="生效公司"
+          :label="$t('companyPolicyManage.生效公司')"
           prop="companyId"
           :rules="rules.requiredRules"
         >
-          <el-select v-model="addForm.companyId" placeholder="请选择生效公司">
+          <el-select v-model="addForm.companyId" :placeholder="$t('companyPolicyManage.请选择生效公司')">
             <el-option
               v-for="company in companyInfo.list"
               :key="company.companyId"
@@ -138,15 +138,15 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="addFormVisible = false">取 消</el-button>
+        <el-button @click="addFormVisible = false">{{ $t('companyManage.取 消') }}</el-button>
         <el-button type="primary" @click="handleAddCompanyPolicy('addForm')"
-          >确 定</el-button
+          >{{ $t('companyManage.确 定') }}</el-button
         >
       </div>
     </el-dialog>
     <!-- 点击修改后的弹窗 -->
     <el-dialog
-      title="修改医药公司政策信息"
+      :title="$t('companyPolicyManage.修改医药公司政策信息')"
       :visible.sync="modifyFormVisible"
       :modal-append-to-body="false"
       @close="handleModifyClose"
@@ -157,14 +157,14 @@
         ref="modifyForm"
         label-width="110px"
       >
-        <el-form-item label="政策名称" prop="title" :rules="rules.nameRules">
+        <el-form-item :label="$t('companyPolicyManage.政策名称')" prop="title" :rules="rules.nameRules">
           <el-input
             v-model.trim="modifyForm.title"
             autocomplete="off"
             required
           />
         </el-form-item>
-        <el-form-item label="政策内容" prop="message" :rules="rules.infoRules">
+        <el-form-item :label="$t('companyPolicyManage.政策内容')" prop="message" :rules="rules.infoRules">
           <el-input
             v-model.trim="modifyForm.message"
             autocomplete="off"
@@ -174,13 +174,13 @@
           />
         </el-form-item>
         <el-form-item
-          label="生效公司"
+          :label="$t('companyPolicyManage.生效公司')"
           prop="companyId"
           :rules="rules.requiredRules"
         >
           <el-select
             v-model="modifyForm.companyId"
-            placeholder="请选择生效公司"
+            :placeholder="$t('companyPolicyManage.请选择生效公司')"
           >
             <el-option
               v-for="company in companyInfo.list"
@@ -192,11 +192,11 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="modifyFormVisible = false">取 消</el-button>
+        <el-button @click="modifyFormVisible = false">{{ $t('companyManage.取 消') }}</el-button>
         <el-button
           type="primary"
           @click="handleModifyMedicalPolicy('modifyForm')"
-          >确 定</el-button
+          >{{ $t('companyManage.确 定') }}</el-button
         >
       </div>
     </el-dialog>
@@ -273,7 +273,7 @@ export default {
           });
         } else {
           this.$message({
-            message: "请检查输入的内容是否合规",
+            message: this.$t('companyManage.请检查输入的内容是否合规'),
             type: "warning",
           });
           return false;
@@ -282,11 +282,15 @@ export default {
     },
     // 删除
     handleDeleteCompanyPolicy(id, title) {
-      this.$confirm(`确定要删除“${title}”的相关信息吗？`, "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning",
-      })
+      this.$confirm(
+        this.$t('companyManage.删除确认', { name: title }),
+        this.$t('companyManage.提示'),
+        {
+          confirmButtonText: this.$t('companyManage.确 定'),
+          cancelButtonText: this.$t('companyManage.取消'),
+          type: "warning",
+        }
+      )
         .then(() => {
           this.$store.dispatch("companyPolicyInfoManage/deleteCompanyPolicy", {
             id,
@@ -297,7 +301,7 @@ export default {
         .catch(() => {
           this.$message({
             type: "info",
-            message: "已取消删除",
+            message: this.$t('companyManage.已取消删除'),
           });
         });
     },
@@ -330,7 +334,7 @@ export default {
           );
         } else {
           this.$message({
-            message: "请检查输入的内容是否合规",
+            message: this.$t('companyManage.请检查输入的内容是否合规'),
             type: "warning",
           });
           return false;
