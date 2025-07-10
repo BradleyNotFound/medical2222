@@ -2,7 +2,7 @@
   <div>
     <el-menu
       class="el-menu-vertical-demo"
-      background-color="#2abeb2"
+      background-color="#c6e2f1"
       text-color="#000000"
       active-text-color="#ffffff"
       router
