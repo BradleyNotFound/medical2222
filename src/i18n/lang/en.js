@@ -62,7 +62,41 @@ export default {
     '已取消删除': 'Deletion cancelled'
   },
   cityManage: {
-    list: 'City List'
+    list: 'City List',
+    '查询（输入要查询的城市或省份）': 'Search (enter city or province)',
+    '城市编号': 'City Number',
+    '所属省': 'Province',
+    '城市名称': 'City Name',
+    '操作': 'Operation',
+    '新增城市': 'Add City',
+    '删除确认': 'Are you sure to delete "{name}"? This will also remove related medical policies of this city',
+    '已取消删除': 'Deletion cancelled',
+    '请检查输入的内容是否合规': 'Please check whether the input is valid'
+  },
+  drugManage: {
+    list: 'Drug List',
+    '药品信息管理': 'Drug Management',
+    '药品信息查询': 'Drug Query',
+    '查询（输入要查询的药品名称）': 'Search (enter drug name)',
+    '药品信息': 'Drug Info',
+    '药品功效': 'Drug Effect',
+    '药品编号': 'Drug Number',
+    '药品图片': 'Drug Image',
+    '药品名称': 'Drug Name',
+    '销售地点': 'Sales Location',
+    '发布者': 'Publisher',
+    '操作': 'Operation',
+    '新增药品': 'Add Drug',
+    '销售药店': 'Sales Pharmacy',
+    '请选择销售地点': 'Please select sales location',
+    '修改药品信息': 'Edit Drug Info',
+    '上传成功': 'Upload succeeded',
+    '上传失败，请重试': 'Upload failed, please retry',
+    '上传的图片只能是 JPG 格式或 PNG 格式': 'Only JPG or PNG images are allowed',
+    '上传药品图片大小不能超过 2MB': 'Drug image size must be less than 2MB',
+    '删除确认': 'Are you sure to delete "{name}"?',
+    '已取消删除': 'Deletion cancelled',
+    '请检查输入的内容是否合规': 'Please check whether the input is valid'
   },
   el: {
     pagination: {

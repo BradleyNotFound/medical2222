@@ -27,7 +27,7 @@
         <el-col :span="23" class="search-col">
           <keep-alive>
             <el-input
-              placeholder="查询（输入要查询的城市或省份）"
+              :placeholder="$t('cityManage.查询（输入要查询的城市或省份）')"
               size="small"
               v-model="keyword"
               @input="handelQuery"
@@ -43,10 +43,10 @@
         :data="tableData.list"
         highlight-current-row
       >
-        <el-table-column prop="cityNumber" label="城市编号" sortable />
-        <el-table-column prop="province" label="所属省" />
-        <el-table-column prop="city" label="城市名称" />
-        <el-table-column prop="cityOperation" label="操作" v-if="hasRole">
+        <el-table-column prop="cityNumber" :label="$t('cityManage.城市编号')" sortable />
+        <el-table-column prop="province" :label="$t('cityManage.所属省')" />
+        <el-table-column prop="city" :label="$t('cityManage.城市名称')" />
+        <el-table-column prop="cityOperation" :label="$t('cityManage.操作')" v-if="hasRole">
           <!-- 通过slot-scope拿到对应行的数据 -->
           <template slot-scope="scope">
             <button
@@ -70,14 +70,14 @@
     </el-main>
     <!-- 点击新增后的弹窗 -->
     <el-dialog
-      title="新增城市"
+      :title="$t('cityManage.新增城市')"
       :visible.sync="addFormVisible"
       :modal-append-to-body="false"
       @close="handleAddClose"
     >
       <el-form :model="addForm" hide-required-asterisk ref="addForm">
         <el-form-item
-          label="城市名称"
+          :label="$t('cityManage.城市名称')"
           :label-width="formLabelWidth"
           prop="cityNumber"
           :rules="rules.requiredRules"
@@ -91,9 +91,9 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="addFormVisible = false">取 消</el-button>
+        <el-button @click="addFormVisible = false">{{ $t('companyManage.取 消') }}</el-button>
         <el-button type="primary" @click="handleAddcity('addForm')"
-          >确 定</el-button
+          >{{ $t('companyManage.确 定') }}</el-button
         >
       </div>
     </el-dialog>
@@ -163,7 +163,7 @@ export default {
           this.currentPage += 1;
         } else {
           this.$message({
-            message: "请检查输入的内容是否合规",
+            message: this.$t('companyManage.请检查输入的内容是否合规'),
             type: "warning",
           });
           return false;
@@ -173,11 +173,11 @@ export default {
     // 删除城市
     handleDeletecity(cityId, cityName) {
       this.$confirm(
-        `确定要删除“${cityName}”的相关信息吗？该操作会同时删除该城市相关的医保政策`,
-        "提示",
+        this.$t('cityManage.删除确认', { name: cityName }),
+        this.$t('companyManage.提示'),
         {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消",
+          confirmButtonText: this.$t('companyManage.确 定'),
+          cancelButtonText: this.$t('companyManage.取消'),
           type: "warning",
         }
       )
@@ -192,7 +192,7 @@ export default {
         .catch(() => {
           this.$message({
             type: "info",
-            message: "已取消删除",
+            message: this.$t('companyManage.已取消删除'),
           });
         });
     },

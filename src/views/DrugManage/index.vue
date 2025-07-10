@@ -3,20 +3,20 @@
     <el-container>
         <!-- 头部区域 -->
         <el-header height="76px">
-            <h2 v-if="hasRole">药品信息管理</h2>
-            <h2 v-else>药品信息查询</h2>
+            <h2 v-if="hasRole">{{ $t('drugManage.药品信息管理') }}</h2>
+            <h2 v-else>{{ $t('drugManage.药品信息查询') }}</h2>
             <!-- 面包屑导航区域 -->
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-                <el-breadcrumb-item v-if="hasRole">药品信息管理</el-breadcrumb-item>
-                <el-breadcrumb-item v-else>药品信息查询</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/' }">{{ $t('menu.首页') }}</el-breadcrumb-item>
+                <el-breadcrumb-item v-if="hasRole">{{ $t('drugManage.药品信息管理') }}</el-breadcrumb-item>
+                <el-breadcrumb-item v-else>{{ $t('drugManage.药品信息查询') }}</el-breadcrumb-item>
             </el-breadcrumb>
         </el-header>
         <!-- 主体内容区域 -->
         <el-main>
             <!--header -->
             <div class="main-title">
-                <h3>药品信息列表</h3>
+                <h3>{{ $t('drugManage.list') }}</h3>
                 <button
                         class="new-add"
                         @click="addFormVisible = true"
@@ -28,7 +28,7 @@
                 <el-col :span="23" class="search-col">
                     <keep-alive>
                         <el-input
-                                placeholder="查询（输入要查询的药品名称）"
+                                :placeholder="$t('drugManage.查询（输入要查询的药品名称）')"
                                 size="small"
                                 v-model="keyword"
                                 @input="handelQuery"
@@ -48,17 +48,17 @@
                 <el-table-column type="expand">
                     <template slot-scope="scope">
                         <el-form label-position="left" inline class="demo-table-expand">
-                            <el-form-item label="药品信息">
+                            <el-form-item :label="$t('drugManage.药品信息')">
                                 <span>{{ scope.row.drugInfo }}</span>
                             </el-form-item>
-                            <el-form-item label="药品功效">
+                            <el-form-item :label="$t('drugManage.药品功效')">
                                 <span>{{ scope.row.drugEffect }}</span>
                             </el-form-item>
                         </el-form>
                     </template>
                 </el-table-column>
-                <el-table-column prop="drugId" label="药品编号" sortable />
-                <el-table-column prop="drugImg" label="药品图片">
+                <el-table-column prop="drugId" :label="$t('drugManage.药品编号')" sortable />
+                <el-table-column prop="drugImg" :label="$t('drugManage.药品图片')">
                     <template slot-scope="scope">
                         <el-image
                                 style="width: 150px; height: 100px;"
@@ -67,16 +67,16 @@
                         ></el-image>
                     </template>
                 </el-table-column>
-                <el-table-column prop="drugName" label="药品名称" />
-                <el-table-column prop="drugSales.saleName" label="销售地点">
+                <el-table-column prop="drugName" :label="$t('drugManage.药品名称')" />
+                <el-table-column prop="drugSales.saleName" :label="$t('drugManage.销售地点')">
                     <template slot-scope="scope">
             <span v-for="i in scope.row.drugSales" :key="i.saleId"
             >{{ i.saleName }}&nbsp;&nbsp;</span
             >
                     </template>
                 </el-table-column>
-                <el-table-column prop="drugPublisher" label="发布者" sortable />
-                <el-table-column label="操作" v-if="hasRole">
+                <el-table-column prop="drugPublisher" :label="$t('drugManage.发布者')" sortable />
+                <el-table-column :label="$t('drugManage.操作')" v-if="hasRole">
                     <template slot-scope="scope">
                         <button
                                 class="table-btn-delete"
@@ -112,7 +112,7 @@
         </el-main>
         <!-- 点击新增后的弹窗 -->
         <el-dialog
-                title="新增药品"
+                :title="$t('drugManage.新增药品')"
                 :visible.sync="addFormVisible"
                 :modal-append-to-body="false"
                 @close="handleAddClose"
@@ -123,14 +123,14 @@
                     ref="addForm"
                     label-width="110px"
             >
-                <el-form-item label="药品名称" prop="drugName" :rules="rules.nameRules">
+                <el-form-item :label="$t('drugManage.药品名称')" prop="drugName" :rules="rules.nameRules">
                     <el-input
                             v-model.trim="addForm.drugName"
                             autocomplete="off"
                             required
                     ></el-input>
                 </el-form-item>
-                <el-form-item label="药品信息" prop="drugInfo" :rules="rules.infoRules">
+                <el-form-item :label="$t('drugManage.药品信息')" prop="drugInfo" :rules="rules.infoRules">
                     <el-input
                             v-model.trim="addForm.drugInfo"
                             autocomplete="off"
@@ -140,7 +140,7 @@
                     ></el-input>
                 </el-form-item>
                 <el-form-item
-                        label="药品功效"
+                        :label="$t('drugManage.药品功效')"
                         prop="drugEffect"
                         :rules="rules.infoRules"
                 >
@@ -153,7 +153,7 @@
                     ></el-input>
                 </el-form-item>
                 <el-form-item
-                        label="药品图片"
+                        :label="$t('drugManage.药品图片')"
                         prop="drugImg"
                         :rules="rules.requiredRules"
                 >
@@ -184,14 +184,14 @@
                     </el-upload>
                 </el-form-item>
                 <el-form-item
-                        label="销售药店"
+                        :label="$t('drugManage.销售药店')"
                         prop="saleIds"
                         :rules="rules.requiredRules"
                 >
                     <el-select
                             v-model="addForm.saleIds"
                             multiple
-                            placeholder="请选择销售地点"
+                            :placeholder="$t('drugManage.请选择销售地点')"
                     >
                         <el-option
                                 v-for="sale in salePlaceInfo.list"
@@ -204,15 +204,15 @@
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button @click="addFormVisible = false">取 消</el-button>
+                <el-button @click="addFormVisible = false">{{ $t('companyManage.取 消') }}</el-button>
                 <el-button type="primary" @click="handleAddDrug('addForm')"
-                >确 定</el-button
+                >{{ $t('companyManage.确 定') }}</el-button
                 >
             </div>
         </el-dialog>
         <!-- 点击修改后的弹窗 -->
         <el-dialog
-                title="修改药品信息"
+                :title="$t('drugManage.修改药品信息')"
                 :visible.sync="modifyFormVisible"
                 :modal-append-to-body="false"
                 @close="handleModifyClose"
@@ -223,14 +223,14 @@
                     ref="modifyForm"
                     label-width="110px"
             >
-                <el-form-item label="药品名称" prop="drugName" :rules="rules.nameRules">
+                <el-form-item :label="$t('drugManage.药品名称')" prop="drugName" :rules="rules.nameRules">
                     <el-input
                             v-model.trim="modifyForm.drugName"
                             autocomplete="off"
                             required
                     ></el-input>
                 </el-form-item>
-                <el-form-item label="药品信息" prop="drugInfo" :rules="rules.infoRules">
+                <el-form-item :label="$t('drugManage.药品信息')" prop="drugInfo" :rules="rules.infoRules">
                     <el-input
                             v-model.trim="modifyForm.drugInfo"
                             autocomplete="off"
@@ -240,7 +240,7 @@
                     ></el-input>
                 </el-form-item>
                 <el-form-item
-                        label="药品功效"
+                        :label="$t('drugManage.药品功效')"
                         prop="drugEffect"
                         :rules="rules.infoRules"
                 >
@@ -253,7 +253,7 @@
                     ></el-input>
                 </el-form-item>
                 <el-form-item
-                        label="药品图片"
+                        :label="$t('drugManage.药品图片')"
                         prop="drugImg"
                         :rules="rules.requiredRules"
                 >
@@ -276,14 +276,14 @@
                     </el-upload>
                 </el-form-item>
                 <el-form-item
-                        label="销售药店"
+                        :label="$t('drugManage.销售药店')"
                         prop="saleIds"
                         :rules="rules.requiredRules"
                 >
                     <el-select
                             v-model="modifyForm.saleIds"
                             multiple
-                            placeholder="请选择销售地点"
+                            :placeholder="$t('drugManage.请选择销售地点')"
                     >
                         <el-option
                                 v-for="sale in salePlaceInfo.list"
@@ -296,9 +296,9 @@
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button @click="modifyFormVisible = false">取 消</el-button>
+                <el-button @click="modifyFormVisible = false">{{ $t('companyManage.取 消') }}</el-button>
                 <el-button type="primary" @click="handleModifyDrug('modifyForm')"
-                >确 定</el-button
+                >{{ $t('companyManage.确 定') }}</el-button
                 >
             </div>
         </el-dialog>
@@ -362,7 +362,7 @@
             },
             //选择完图片后自动上传，并拿到服务器返回的图片url地址
             handleUploadSuccess(res) {
-                this.$message.success("上传成功");
+                this.$message.success(this.$t('drugManage.上传成功'));
                 setTimeout(() => {
                     this.uploading = false;
                     this.percentage = 0;
@@ -375,7 +375,7 @@
                 }, 800);
             },
             handleUploadError(err) {
-                this.$message.error("上传失败，请重试");
+                this.$message.error(this.$t('drugManage.上传失败，请重试'));
                 this.uploading = false;
                 this.percentage = 0;
                 this.status = null;
@@ -390,10 +390,10 @@
                 const isJPG = file.type === "image/jpeg" || file.type === "image/png";
                 const isLt2M = file.size / 1024 / 1024 < 2;
                 if (!isJPG) {
-                    this.$message.error("上传的图片只能是 JPG 格式或 PNG 格式");
+                    this.$message.error(this.$t('drugManage.上传的图片只能是 JPG 格式或 PNG 格式'));
                 }
                 if (!isLt2M) {
-                    this.$message.error("上传药品图片大小不能超过 2MB");
+                    this.$message.error(this.$t('drugManage.上传药品图片大小不能超过 2MB'));
                 }
                 return isJPG && isLt2M;
             },
@@ -437,16 +437,16 @@
                                 .realname,
                         });
                     } else {
-                        this.$message.warning("请检查输入的内容是否合规");
+                        this.$message.warning(this.$t('companyManage.请检查输入的内容是否合规'));
                         return false;
                     }
                 });
             },
             // 删除药品
             handleDeleteDrug(drugId, drugName) {
-                this.$confirm(`确定要删除“${drugName}”的相关信息吗？`, "提示", {
-                    confirmButtonText: "确定",
-                    cancelButtonText: "取消",
+                this.$confirm(this.$t('drugManage.删除确认', { name: drugName }), this.$t('companyManage.提示'), {
+                    confirmButtonText: this.$t('companyManage.确 定'),
+                    cancelButtonText: this.$t('companyManage.取消'),
                     type: "warning",
                 })
                     .then(() => {
@@ -460,7 +460,7 @@
                     .catch(() => {
                         this.$message({
                             type: "info",
-                            message: "已取消删除",
+                            message: this.$t('companyManage.已取消删除'),
                         });
                     });
             },
@@ -504,7 +504,7 @@
                         });
                     } else {
                         this.$message({
-                            message: "请检查输入的内容是否合规",
+                            message: this.$t('companyManage.请检查输入的内容是否合规'),
                             type: "warning",
                         });
                         return false;
