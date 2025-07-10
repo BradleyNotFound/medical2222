@@ -61,6 +61,39 @@ export default {
     '位置选择成功，请输入详细信息': 'Location selected successfully, please enter details',
     '已取消删除': 'Deletion cancelled'
   },
+  companyPolicyManage: {
+    list: 'Company Policy List',
+    '医药公司政策查询': 'Company Policy Search',
+    '查询（输入要查询的关键字）': 'Search (enter keyword)',
+    '医药公司政策内容': 'Company Policy Content',
+    '政策编号': 'Policy Number',
+    '政策名称': 'Policy Name',
+    '发布时间': 'Publish Date',
+    '请选择生效公司': 'Please select company',
+    '生效公司': 'Effective Company',
+    '新增医药公司政策': 'Add Company Policy',
+    '修改医药公司政策信息': 'Edit Company Policy Info'
+  },
+  medicalPolicyManage: {
+    list: 'Medical Policy List',
+    '医保政策查询': 'Medical Policy Search',
+    '医保编号': 'Policy Number',
+    '政策标题': 'Policy Title',
+    '城市': 'City',
+    '发布时间': 'Publish Date',
+    '医保内容': 'Policy Content',
+    '政策标题标签': 'Policy Title',
+    '政策内容': 'Policy Content',
+    '生效城市': 'Effective City',
+    '新增医保政策': 'Add Medical Policy',
+    '修改医保政策信息': 'Edit Medical Policy Info',
+    '查询提示': 'Please select city to search',
+    '选择日期': 'Select date',
+    '请输入': 'Please enter',
+    '请选择生效城市': 'Please select city',
+    '查找': 'Search',
+    '新增': 'Add'
+  },
   cityManage: {
     list: 'City List'
   },
