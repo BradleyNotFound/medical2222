@@ -3,20 +3,20 @@
   <el-container>
     <!-- 头部区域 -->
     <el-header height="76px">
-      <h2 v-if="hasRole">必备材料管理</h2>
-      <h2 v-else>必备材料查询</h2>
+      <h2 v-if="hasRole">{{ $t('menu.必备材料管理') }}</h2>
+      <h2 v-else>{{ $t('materialManage.必备材料查询') }}</h2>
       <!-- 面包屑导航区域 -->
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item v-if="hasRole">必备材料管理</el-breadcrumb-item>
-        <el-breadcrumb-item v-else>必备材料查询</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/' }">{{ $t('menu.首页') }}</el-breadcrumb-item>
+        <el-breadcrumb-item v-if="hasRole">{{ $t('menu.必备材料管理') }}</el-breadcrumb-item>
+        <el-breadcrumb-item v-else>{{ $t('materialManage.必备材料查询') }}</el-breadcrumb-item>
       </el-breadcrumb>
     </el-header>
     <!-- 主体内容区域 -->
     <el-main>
       <!--header -->
       <div class="main-title">
-        <h3>必备材料列表</h3>
+        <h3>{{ $t('materialManage.list') }}</h3>
         <button
           class="new-add"
           @click="addFormVisible = true"
@@ -27,7 +27,7 @@
       <el-row :gutter="20">
         <el-col :span="23" class="search-col">
           <el-input
-            placeholder="查询（输入要查询的关键字）"
+            :placeholder="$t('materialManage.查询（输入要查询的关键字）')"
             clearable
             size="small"
             v-model="keyword"
@@ -45,10 +45,10 @@
         max-height="375"
         highlight-current-row
       >
-        <el-table-column prop="id" label="材料编号" sortable />
-        <el-table-column prop="title" label="材料标题" />
-        <el-table-column prop="message" label="材料内容" min-width="400" />
-        <el-table-column label="操作" v-if="hasRole">
+        <el-table-column prop="id" :label="$t('materialManage.材料编号')" sortable />
+        <el-table-column prop="title" :label="$t('materialManage.材料标题')" />
+        <el-table-column prop="message" :label="$t('materialManage.材料内容')" min-width="400" />
+        <el-table-column :label="$t('materialManage.操作')" v-if="hasRole">
           <template slot-scope="scope">
             <button
               class="table-btn-delete"
@@ -81,14 +81,14 @@
     </el-main>
     <!-- 点击新增后的弹窗 -->
     <el-dialog
-      title="新增必备材料"
+      :title="$t('materialManage.新增必备材料')"
       :visible.sync="addFormVisible"
       :modal-append-to-body="false"
       @close="handleAddClose"
     >
       <el-form :model="addForm" hide-required-asterisk ref="addForm">
         <el-form-item
-          label="材料标题"
+          :label="$t('materialManage.材料标题')"
           label-width="110px"
           prop="title"
           :rules="rules.nameRules"
@@ -100,7 +100,7 @@
           ></el-input>
         </el-form-item>
         <el-form-item
-          label="材料内容"
+          :label="$t('materialManage.材料内容')"
           label-width="110px"
           prop="message"
           :rules="rules.infoRules"
@@ -113,15 +113,15 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="addFormVisible = false">取 消</el-button>
+        <el-button @click="addFormVisible = false">{{ $t('materialManage.取 消') }}</el-button>
         <el-button type="primary" @click="handleAddMaterial('addForm')"
-          >确 定</el-button
+          >{{ $t('materialManage.确 定') }}</el-button
         >
       </div>
     </el-dialog>
     <!-- 点击修改后的弹窗 -->
     <el-dialog
-      title="修改必备材料信息"
+      :title="$t('materialManage.修改必备材料信息')"
       :visible.sync="modifyFormVisible"
       :modal-append-to-body="false"
       @close="handleModifyClose"
@@ -134,7 +134,7 @@
       >
         <el-form :model="modifyForm" hide-required-asterisk ref="modifyForm">
           <el-form-item
-            label="材料标题"
+            :label="$t('materialManage.材料标题')"
             label-width="110px"
             prop="title"
             :rules="rules.nameRules"
@@ -146,7 +146,7 @@
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="材料内容"
+            :label="$t('materialManage.材料内容')"
             label-width="110px"
             prop="message"
             :rules="rules.infoRules"
@@ -160,9 +160,9 @@
         </el-form>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="modifyFormVisible = false">取 消</el-button>
+        <el-button @click="modifyFormVisible = false">{{ $t('materialManage.取 消') }}</el-button>
         <el-button type="primary" @click="handleModifyMeterial('modifyForm')"
-          >确 定</el-button
+          >{{ $t('materialManage.确 定') }}</el-button
         >
       </div>
     </el-dialog>
@@ -235,7 +235,7 @@ export default {
           this.currentPage += 1;
         } else {
           this.$message({
-            message: "请检查输入的内容是否合规",
+            message: this.$t('materialManage.请检查输入的内容是否合规'),
             type: "warning",
           });
           return false;
@@ -244,9 +244,9 @@ export default {
     },
     // 删除
     handleDeleteMaterial(id, title) {
-      this.$confirm(`确定要删除“${title}”的相关信息吗？`, "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
+      this.$confirm(this.$t('materialManage.删除确认', { name: title }), this.$t('materialManage.提示'), {
+        confirmButtonText: this.$t('materialManage.确 定'),
+        cancelButtonText: this.$t('materialManage.取消'),
         type: "warning",
       })
         .then(() => {
@@ -260,7 +260,7 @@ export default {
         .catch(() => {
           this.$message({
             type: "info",
-            message: "已取消删除",
+            message: this.$t('materialManage.已取消删除'),
           });
         });
     },
@@ -288,7 +288,7 @@ export default {
           });
         } else {
           this.$message({
-            message: "请检查输入的内容是否合规",
+            message: this.$t('materialManage.请检查输入的内容是否合规'),
             type: "warning",
           });
           return false;
