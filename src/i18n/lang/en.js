@@ -165,6 +165,25 @@ export default {
     '已取消删除': 'Deletion cancelled',
     '请检查输入的内容是否合规': 'Please check whether the input is valid'
   },
+  materialManage: {
+    list: 'Material List',
+    '必备材料管理': 'Material Management',
+    '必备材料查询': 'Material Search',
+    '查询（输入要查询的关键字）': 'Search (enter keyword)',
+    '材料编号': 'Material Number',
+    '材料标题': 'Material Title',
+    '材料内容': 'Material Content',
+    '操作': 'Operation',
+    '新增必备材料': 'Add Material',
+    '修改必备材料信息': 'Edit Material Info',
+    '取 消': 'Cancel',
+    '确 定': 'Confirm',
+    '取消': 'Cancel',
+    '提示': 'Notice',
+    '删除确认': 'Are you sure to delete "{name}"?',
+    '已取消删除': 'Deletion cancelled',
+    '请检查输入的内容是否合规': 'Please check whether the input is valid'
+  },
   el: {
     pagination: {
       goto: 'Go to',
