@@ -224,6 +224,26 @@ body,
   height: 100%;
   background-color: #f3f3f4;
 }
+body.dark-mode {
+  background-color: #000;
+  color: #fff;
+}
+body.dark-mode a {
+  color: #91b5ff;
+}
+body.dark-mode .el-container,
+body.dark-mode .el-header,
+body.dark-mode .el-main,
+body.dark-mode .el-aside {
+  background-color: #000 !important;
+  color: #fff;
+}
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode .el-input__inner {
+  background-color: #333;
+  color: #fff;
+}
 @font-face {
   font-family: "icomoon";
   src: url("../assets/fonts/icomoon.eot?ig2t21");

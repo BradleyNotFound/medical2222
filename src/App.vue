@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <ParticleBackground />
     <router-view></router-view>
     <!-- AI聊天助手 -->
     <ai-chat></ai-chat>
@@ -7,18 +8,13 @@
 </template>
 
 <script>
-import AiChat from './components/AiChat.vue'
-
-export default {
-    name: "app",
-    components: {
-        AiChat
-    },
-    mounted() {
-        //只要刷新页面，就会重新加载路由树，保证了路由不会丢失数据
-        if (localStorage.getItem("userInfo")) {
-            this.$store.dispatch("app/setMenuList");
-        }
-    },
-};
+    export default {
+        name: "app",
+        mounted() {
+            //只要刷新页面，就会重新加载路由树，保证了路由不会丢失数据
+            if (localStorage.getItem("userInfo")) {
+                this.$store.dispatch("app/setMenuList");
+            }
+        },
+    };
 </script>
